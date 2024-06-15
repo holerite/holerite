@@ -1,9 +1,15 @@
-import { db } from "@/data/database";
-import { users } from "@/data/users";
+import Link from "next/link";
 
-export default async function Home() {
-  const teste = await db.select().from(users).all()
+
+export default function() {
+
   return (
-    <h1>{JSON.stringify(teste)}</h1>
-  );
+    <>
+      <h1> Landing page </h1>
+      <Link href="/login" >Login</Link>
+    </>
+  )
 }
+
+
+
