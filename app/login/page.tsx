@@ -1,7 +1,7 @@
 "use client"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
-import Image from "next/image"
+import Image from "next/legacy/image"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
