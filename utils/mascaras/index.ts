@@ -1,4 +1,4 @@
-import { cpf } from './cpf.ts'
+import { cpf } from './cpf'
 
 export {
 	cpf
