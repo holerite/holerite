@@ -73,7 +73,7 @@ export default function Login() {
           <form onSubmit={realizarLogin} className="flex w-full flex-col gap-4 items-center">
             <div className="grid w-full max-w-sm items-center gap-1.5">
               <Label htmlFor="cpf">CPF</Label>
-              <Input value={dados?.cpf} type="text" id="cpf" placeholder="000.000.000-00" onChange={(e) => {
+              <Input value={dados.cpf} type="text" id="cpf" placeholder="000.000.000-00" onChange={(e) => {
                 setDados(anterior => {
                   return {
                     ...anterior,
@@ -84,7 +84,7 @@ export default function Login() {
             </div>
             <div className="grid w-full max-w-sm items-center gap-1.5">
               <Label htmlFor="senha">Senha</Label>
-              <Input value={dados?.senha} type="password" id="senha" placeholder="*********" onChange={(e) => {
+              <Input value={dados.senha} type="password" id="senha" placeholder="*********" onChange={(e) => {
                 setDados((anteriores) => {
                   return {
                     ...anteriores,
@@ -94,7 +94,7 @@ export default function Login() {
               }} />
             </div>
             <div className="flex w-full max-w-sm items-center gap-1.5">
-              <Checkbox checked={dados?.manter} id="manter" onCheckedChange={(e) => {
+              <Checkbox checked={dados.manter} id="manter" onCheckedChange={(e) => {
                 setDados(anterior => {
                   return {
                     ...anterior,
