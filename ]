@@ -1,0 +1,29 @@
+import { prisma } from "@/data/database";
+import { removePonto } from "@/utils/mascaras/cpf";
+import type { NextRequest } from "next/server";
+
+export async function POST(request: NextRequest) {
+	try {
+		const dados = await request.json();
+
+		if (!dados.senha) {
+			throw "Senha é obrigatória";
+		}
+
+		if (!dados.nome) {
+			throw "O nome é obrigatório";
+		}
+
+		const user = await prisma.user.create({
+			data: {
+				cpf: removePonto(dados.cpf),
+				nome: dados.nome,
+				senha: dados.senha,
+			},
+		});
+		return Response.json({ user });
+	} catch (e) {
+		console.log({ e });
+		return Response.json({ mensagem: e }, { status: 400 });
+	}
+}
