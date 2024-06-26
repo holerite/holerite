@@ -11,7 +11,7 @@ import banner from "@/public/banner.jpg";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
-
+import axios from "axios";
 type FormularioDto = {
 	cpf: string;
 	senha: string;
@@ -31,12 +31,9 @@ export default function Login() {
 
 	const mutation = useMutation({
 		mutationFn: () => {
-			return fetch("/api/user", {
-				method: "POST",
-				body: JSON.stringify({
-					cpf: dados.cpf,
-					senha: dados.senha,
-				}),
+			return axios.post("/api/user/login", {
+				cpf: dados.cpf,
+				senha: dados.senha,
 			});
 		},
 		onError: () => {
