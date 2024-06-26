@@ -80,7 +80,6 @@ export default function Login() {
 							<h1>Logo Holerite</h1>
 							<h1 className="font-bold text-sm">Bem vindo de volta!</h1>
 						</div>
-
 						<form
 							onSubmit={realizarLogin}
 							className="flex w-full flex-col gap-4 items-center"
