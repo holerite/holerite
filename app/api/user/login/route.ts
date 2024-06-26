@@ -15,6 +15,10 @@ export async function POST(request: NextRequest) {
 			where: {
 				cpf: removePonto(dados.cpf),
 			},
+			select: {
+				nome: true,
+				senha: true,
+			},
 		});
 
 		const senhaIgual = bcrypt.compareSync(dados.senha, user.senha);
@@ -22,12 +26,15 @@ export async function POST(request: NextRequest) {
 
 		cookies().set({
 			name: "user",
-			value: "tese",
-			httpOnly: true,
+			value: JSON.stringify({
+				nome: user.nome,
+			}),
+			sameSite: "strict",
+			httpOnly: false,
 			secure: process.env.NODE_ENV === "production",
 			maxAge: dados.manterConectado ? 60 * 60 * 24 * 7 : 24 * 60 * 60 * 1000, // One week | One Day
 		});
-		return Response.json({ user });
+		return Response.json(true);
 	} catch (error) {
 		console.log(error);
 		return Response.json({ mensagem: error }, { status: 400 });
