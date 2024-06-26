@@ -47,7 +47,7 @@ export default function Login() {
 			});
 		},
 		onSuccess: () => {
-			router.push("/dashboard");
+			router.push("/app/relatorio");
 		},
 	});
 

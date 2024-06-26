@@ -4,7 +4,8 @@ import {
 	Import,
 	Settings2,
 	StickyNote,
-	User,
+	User2,
+	Users2,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -28,7 +29,7 @@ export function Navbar() {
 					<NavItem
 						icon={<Clipboard className="w-5 h-5" />}
 						name="Relatórios"
-						url="/relatorioos"
+						url="/relatorios"
 					/>
 					<NavItem
 						icon={<StickyNote className="w-5 h-5" />}
@@ -36,17 +37,21 @@ export function Navbar() {
 						url="/recibos"
 					/>
 					<NavItem
-						icon={<User className="w-5 h-5" />}
-						name="Usuários"
-						url="dashboard/usuarios"
+						icon={<Users2 className="w-5 h-5" />}
+						name="Colaboradores"
+						url="dashboard/colaboradores"
 					/>
 					<NavItem
 						icon={<Import className="w-5 h-5" />}
 						name="Importar"
 						url="/importar"
 					/>
-
-					<hr />
+					<NavItem
+						icon={<User2 className="w-5 h-5" />}
+						name="Usuários"
+						url="dashboard/usuarios"
+					/>
+					<hr className="my-6" />
 					<NavItem
 						icon={<Settings2 className="w-5 h-5" />}
 						name="Configurações"
