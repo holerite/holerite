@@ -10,6 +10,7 @@ import { useState } from "react";
 import banner from "@/public/banner.jpg";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
 
 type FormularioDto = {
 	cpf: string;
@@ -28,26 +29,31 @@ export default function Login() {
 	const { toast } = useToast();
 	const router = useRouter();
 
-	async function realizarLogin(e: any) {
-		e.preventDefault();
-
-		try {
-			const response = await fetch("/api/user", {
+	const mutation = useMutation({
+		mutationFn: () => {
+			return fetch("/api/user", {
 				method: "POST",
 				body: JSON.stringify({
 					cpf: dados.cpf,
 					senha: dados.senha,
 				}),
 			});
-			if (response.status !== 200) throw "";
-			router.push("/dashboard");
-		} catch (e) {
+		},
+		onError: () => {
 			toast({
 				variant: "destructive",
 				title: "Erro ao realizar login",
 				description: "Email ou senha incorretos",
 			});
-		}
+		},
+		onSuccess: () => {
+			router.push("/dashboard");
+		},
+	});
+
+	function realizarLogin(e: any) {
+		e.preventDefault();
+		mutation.mutate();
 	}
 
 	return (
@@ -133,7 +139,11 @@ export default function Login() {
 									Manter conectado
 								</Label>
 							</div>
-							<Button type="submit" className="mt-4 w-full max-w-sm">
+							<Button
+								isLoading={mutation.isPending}
+								type="submit"
+								className="mt-4 w-full max-w-sm"
+							>
 								Entrar
 							</Button>
 							<Link href="/recuperar-senha" className="text-sm text-center">
