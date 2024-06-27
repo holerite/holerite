@@ -24,7 +24,7 @@ import { useEffect, useState } from "react";
 type dadoUsuario = {
 	nome: string;
 	perfil: string;
-	urlFoto: string;
+	foto: string;
 };
 
 export function Header() {
@@ -75,7 +75,7 @@ export function Header() {
 					<div className="flex items-center gap-3">
 						<div>
 							<Avatar>
-								<AvatarImage src="https://github.com/shadcssssn.png" />
+								<AvatarImage src={usuario?.foto} />
 								<AvatarFallback>
 									{usuario?.nome
 										.split(" ")

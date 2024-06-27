@@ -18,6 +18,12 @@ export async function POST(request: NextRequest) {
 			select: {
 				nome: true,
 				senha: true,
+				foto: true,
+				perfil: {
+					select: {
+						nome: true,
+					},
+				},
 			},
 		});
 
@@ -28,6 +34,8 @@ export async function POST(request: NextRequest) {
 			name: "user",
 			value: JSON.stringify({
 				nome: user.nome,
+				perfil: user.perfil.nome,
+				foto: user.foto,
 			}),
 			sameSite: "strict",
 			httpOnly: false,

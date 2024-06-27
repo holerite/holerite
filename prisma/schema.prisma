@@ -9,8 +9,39 @@ datasource db {
 }
 
 model User {
-        id         Int      @id @default(autoincrement())
-        nome       String
-        cpf        String   @unique
-        senha      String
+        id        Int       @id @default(autoincrement())
+        nome      String
+        cpf       String    @unique
+        senha     String
+        foto      String?
+        Empresa   Empresa[]
+        perfil    Perfil    @relation(fields: [perfil_id], references: [id])
+        perfil_id Int
+}
+
+model Empresa {
+        id            Int           @id @default(autoincrement())
+        nome          String?
+        cnpj          String        @unique
+        logo          String?
+        nome_fantasia String?
+        User          User[]
+        Colaborador   Colaborador[]
+}
+
+model Perfil {
+        id        Int    @id @default(autoincrement())
+        nome      String
+        permissao String
+        User      User[]
+}
+
+model Colaborador {
+        id        Int       @id @default(autoincrement())
+        nome      String
+        cpf       String    @unique
+        matricula String
+        senha     String
+        cargo     String
+        Empresa   Empresa[]
 }
